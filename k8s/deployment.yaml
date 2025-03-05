@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: techm-hello
+  namespace: default
+  labels:
+    'backstage.io/kubernetes-id': 'techm-hello'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: techm-hello
+  template:
+    metadata:
+      labels:
+        app: techm-hello
+        'backstage.io/kubernetes-id': 'techm-hello'
+    spec:
+      imagePullSecrets:
+      - name: registry-auth
+      containers:
+        - name: techm-hello
+          image: idpdeveacr.azurecr.io/techm-hello:latest
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: techm-hello
+  namespace: default
+  labels:
+    #tekton.dev/pipelines: default/springboot-pipeline
+    'backstage.io/kubernetes-id': 'techm-hello'
+spec:
+  type: LoadBalancer
+  selector:
+    app: techm-hello
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
