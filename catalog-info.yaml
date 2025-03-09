@@ -15,8 +15,8 @@ metadata:
     github.com/workflow-ref: .github/workflows/deploy.yaml@main
     backstage.io/managed-by-location: url:https://github.com/azarus-code/techm-hello
     backstage.io/managed-by-origin-location: url:https://github.com/azarus-code/techm-hello
-    backstage.io/kubernetes-id: "techm-hello"
-    backstage.io/kubernetes-cluster: "bsidp-cluster"
+    backstage.io/kubernetes-id: "nodejs-app"
+    backstage.io/kubernetes-cluster: "lattice-observability"
     backstage.io/kubernetes-namespace: 'default'
     sonarqube.org/project-key: lattice-idp
     # backstage.io/techdocs-ref: dir:.
